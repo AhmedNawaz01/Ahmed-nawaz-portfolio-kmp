@@ -1,5 +1,7 @@
 # Editing portfolio content
 
+The maintained step-by-step guide is [Adding content](ADDING_CONTENT.md). This file retains the original editorial checklist below for quick reference.
+
 ## Keep claims verifiable
 
 Only publish experience, project details, dates, metrics, clients, screenshots, or links that Ahmed has reviewed and confirmed. The current project cards are domain placeholders, not proof of a particular employer, product, team size, or outcome.

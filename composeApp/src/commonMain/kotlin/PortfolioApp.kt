@@ -185,6 +185,7 @@ private fun BottomNavigation(selected: String, onSelect: (String) -> Unit) {
 private fun HomeSection(onProjects: () -> Unit, onContact: () -> Unit) {
     BoxWithConstraints(Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 36.dp)) {
         val wide = maxWidth >= 680.dp
+        val metricSpacing = if (maxWidth < 360.dp) 4.dp else 28.dp
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(28.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(if (wide) 1f else 1f)) {
                 Eyebrow("SENIOR ANDROID ENGINEER · KOTLIN MULTIPLATFORM")
@@ -198,7 +199,7 @@ private fun HomeSection(onProjects: () -> Unit, onContact: () -> Unit) {
                     Pill("Get in touch", filled = false, onClick = onContact)
                 }
                 Spacer(Modifier.height(34.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(metricSpacing)) {
                     Metric("09+", "YEARS BUILDING")
                     Metric("KMP", "SHARED SYSTEMS")
                     Metric("10", "CORE DISCIPLINES")
@@ -255,7 +256,11 @@ private fun ProjectsSection() {
                 Row(horizontalArrangement = Arrangement.spacedBy(13.dp)) {
                     PortfolioContent.projects.forEach { ProjectCard(it, Modifier.weight(1f)) }
                 }
-            } else PortfolioContent.projects.forEach { ProjectCard(it, Modifier.fillMaxWidth()) }
+            } else {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    PortfolioContent.projects.forEach { ProjectCard(it, Modifier.fillMaxWidth()) }
+                }
+            }
         }
     }
 }
@@ -397,7 +402,11 @@ private fun ExpertiseSection() {
                     }
                     Spacer(Modifier.height(8.dp))
                 }
-            } else PortfolioContent.expertise.forEach { ExpertiseItem(it, Modifier.fillMaxWidth()) }
+            } else {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PortfolioContent.expertise.forEach { ExpertiseItem(it, Modifier.fillMaxWidth()) }
+                }
+            }
         }
     }
 }

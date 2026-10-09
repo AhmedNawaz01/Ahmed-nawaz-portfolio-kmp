@@ -2,33 +2,36 @@
 
 ## Workflow behavior
 
-`.github/workflows/build.yml` runs the Wasm test task and production distribution task for pushes to `main`, pushes to `feature/**`, pull requests, and manual runs. It uploads the build output as a workflow artifact. A Pages artifact is uploaded and deployed only for a run on `main` (push or manual dispatch); pull requests and feature branches do not replace the live site.
+`.github/workflows/build.yml` runs the Wasm test task and production distribution task with `./gradlew` for pushes to `main`, pushes to `feature/**`, pull requests, and manual runs. It uploads the build output as a workflow artifact. A Pages artifact is uploaded and deployed only for a run on `main` (push or manual dispatch); pull requests and feature branches do not replace the live site.
 
 The static distribution path is `composeApp/build/dist/wasmJs/productionExecutable`. The generated `index.html` references `portfolio.js` and the Wasm files relatively, so it does not assume the site is hosted at the domain root.
 
-The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`. GitHub requires the Pages source to be set to **GitHub Actions**. The `configure-pages` action does not enable Pages with `GITHUB_TOKEN`; automatic enablement requires a separate token with repository administration access. The previous public API inspection reported `has_pages: false` (2026-10-09); a recheck during this run was blocked by unavailable DNS/network access. Treat Pages as unverified/currently unavailable until an authenticated owner confirms it in repository settings. This setting must be enabled before the first Pages deployment can succeed.
+The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`. GitHub requires the Pages source to be set to **GitHub Actions**. The `configure-pages` action does not enable Pages with `GITHUB_TOKEN`; automatic enablement requires a separate token with repository administration access. During this run, authenticated repository admin access was confirmed and Pages was enabled through GitHub's API with `build_type: workflow`. The API returns the expected `html_url`; that confirms configuration only, not deployment.
 
-## One-time repository setup
+## Repository setup status and release steps
 
-An administrator should:
+Pages was enabled through the authenticated repository admin session during this execution. `GET /pages` now reports the site URL and `build_type: workflow`. After the pull request is reviewed and merged, verify:
 
-1. Open the repository's **Settings → Pages**.
-2. Set **Build and deployment → Source** to **GitHub Actions**.
-3. Confirm Actions are allowed to use the `github-pages` environment and the workflow permissions `pages: write` and `id-token: write`.
-4. Merge the reviewed deployment workflow to `main` or dispatch it from `main`.
-5. Open the workflow run and inspect the deployment job's `page_url` output.
+1. Confirm **Settings → Pages → Build and deployment → Source** remains **GitHub Actions**.
+2. Confirm Actions may use the `github-pages` environment and the workflow's deploy-job permissions `pages: write` and `id-token: write`.
+3. Merge the reviewed feature branch to `main` after its checks pass, or dispatch the workflow from `main`.
+4. Open the workflow run and inspect the deployment job's `page_url` output.
 
 GitHub's official guide describes the setup and required workflow permissions: [Deploying your website automatically](https://docs.github.com/en/get-started/start-your-journey/deploying-your-website-automatically).
 
 ## Expected URL
 
-For this public project repository, the expected project-site URL is:
+GitHub Pages reports this configured project-site URL:
 
 ```text
 https://ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp/
 ```
 
-This is a derived expected URL, not a verified live URL. The current run did not trigger deployment; do not share it as active until the deployment job succeeds and the URL returns the published page.
+Pages is configured for this URL, but configuration is not deployment evidence. Do not share it as live until the deployment job succeeds and the URL returns the published app.
+
+## Rollback
+
+For a broken deployment, rerun the last known-good deployment workflow from its deployed `main` revision, or revert the faulty change through a reviewed commit/PR and let the `main` workflow publish that revision. Do not force-push or rewrite deployment history. Record which commit is live after rollback.
 
 ## Manual static hosting
 
