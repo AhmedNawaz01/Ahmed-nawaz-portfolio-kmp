@@ -1,6 +1,6 @@
 # Ahmed Nawaz — Engineering Portfolio
 
-> **Current release status:** the portfolio is a Kotlin/Wasm single-page site. Local browser tests and the production build pass. GitHub Pages is configured for Actions, but branch publication and deployment verification are still pending. Project cards are domain-level placeholders, not substantiated client case studies.
+> **Current release status:** the portfolio is a Kotlin/Wasm single-page site. Local browser tests and the production build pass. `feature/compose-wasm-portfolio` is pushed; GitHub Pages is configured for Actions. Pull request checks and deployment are still pending. Project cards are domain-level placeholders, not substantiated client case studies.
 
 ## Contents
 
@@ -25,7 +25,7 @@ A dark, mobile-first engineering portfolio for Ahmed Nawaz, Senior Android Engin
 
 There is one Gradle app module (`composeApp`) and no backend or database. The app is a responsive Compose Multiplatform web experience compiled to Kotlin/Wasm. Compose Multiplatform's Wasm target is Beta; see [architecture and platform notes](docs/ARCHITECTURE.md#platform-boundary).
 
-**Repository:** [AhmedNawaz01/Ahmed-nawaz-portfolio-kmp](https://github.com/AhmedNawaz01/Ahmed-nawaz-portfolio-kmp) (configured remote; publication of the current feature branch is not verified). **Live site:** none verified.
+**Repository:** [AhmedNawaz01/Ahmed-nawaz-portfolio-kmp](https://github.com/AhmedNawaz01/Ahmed-nawaz-portfolio-kmp). **Live site:** none verified yet.
 
 ## Screenshots
 
@@ -158,7 +158,7 @@ Use a short feature branch, make a focused change, run relevant checks, inspect 
 
 ## CI and deployment
 
-`.github/workflows/build.yml` runs tests and the production distribution for `main`, `feature/**`, pull requests, and manual dispatch. The workflow uploads `composeApp/build/dist/wasmJs/productionExecutable`; it deploys only on `main`. Pages was configured for GitHub Actions during this execution, but the feature branch has not yet been published and no workflow deployment/live URL is verified. See [deployment](docs/DEPLOYMENT.md).
+`.github/workflows/build.yml` runs tests and the production distribution for `main`, `feature/**`, pull requests, and manual dispatch. The workflow uploads `composeApp/build/dist/wasmJs/productionExecutable`; it deploys only on `main`. Pages is configured for Actions, and the feature branch is pushed; its PR checks and live deployment are pending. See [deployment](docs/DEPLOYMENT.md).
 
 ## Security and privacy
 
