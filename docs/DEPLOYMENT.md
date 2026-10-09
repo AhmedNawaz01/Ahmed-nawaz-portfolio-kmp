@@ -6,7 +6,7 @@
 
 The static distribution path is `composeApp/build/dist/wasmJs/productionExecutable`. The generated `index.html` references `portfolio.js` and the Wasm files relatively, so it does not assume the site is hosted at the domain root.
 
-The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`. GitHub requires the Pages source to be set to **GitHub Actions**. The `configure-pages` action does not enable Pages with `GITHUB_TOKEN`; automatic enablement requires a separate token with repository administration access. The repository was checked on 2026-10-09 and currently reports `has_pages: false`, so this setting must be enabled in repository settings before the first Pages deployment can succeed.
+The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages`. GitHub requires the Pages source to be set to **GitHub Actions**. The `configure-pages` action does not enable Pages with `GITHUB_TOKEN`; automatic enablement requires a separate token with repository administration access. The previous public API inspection reported `has_pages: false` (2026-10-09); a recheck during this run was blocked by unavailable DNS/network access. Treat Pages as unverified/currently unavailable until an authenticated owner confirms it in repository settings. This setting must be enabled before the first Pages deployment can succeed.
 
 ## One-time repository setup
 
@@ -28,7 +28,7 @@ For this public project repository, the expected project-site URL is:
 https://ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp/
 ```
 
-This is a derived expected URL, not a verified live URL. GitHub currently reports Pages disabled, so do not share it as active until the deployment job succeeds and the URL returns the published page.
+This is a derived expected URL, not a verified live URL. The current run did not trigger deployment; do not share it as active until the deployment job succeeds and the URL returns the published page.
 
 ## Manual static hosting
 

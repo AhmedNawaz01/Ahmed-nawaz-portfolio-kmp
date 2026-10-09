@@ -3,12 +3,13 @@
 A mobile inspired engineering portfolio built with Kotlin, Compose Multiplatform, and Kotlin/Wasm. It is a static site with no backend.
 
 For setup, architecture, content editing, deployment, screenshots, and known technical debt, see the [project guide](docs/README.md).
+See [CHANGELOG.md](CHANGELOG.md) for verified project updates.
 
 ## Current status
 
 The source targets Kotlin/Wasm (`wasmJs`) and Compose Multiplatform. Official Kotlin documentation currently lists the Compose Multiplatform web target as **Beta** and requires browsers with WebAssembly GC support. Validate the experience in current Chrome, Edge, Firefox, and Safari releases before relying on it as the only public portfolio surface.
 
-The repository does not include a Gradle wrapper, so local builds require Gradle 9.4.1 to be available separately. The Wasm production distribution was verified with JDK 17.0.20.1 and Gradle 9.4.1. The `wasmJsTest` task ran and reported `NO-SOURCE`; no test sources are configured yet. GitHub Actions builds the static distribution and deploys it from `main` when GitHub Pages has been enabled for Actions.
+The repository does not include a Gradle wrapper, so local builds require Gradle 9.4.1 to be available separately. The Wasm production distribution succeeds with JDK 17.0.20.1 and Gradle 9.4.1. Three common-source-set content integrity tests are configured and compile, but local execution currently stops because ChromeHeadless is not installed. GitHub Actions builds the site and is configured to deploy from `main` after GitHub Pages is enabled for Actions in repository settings. The current feature branch has not been pushed.
 
 ## Run locally
 
@@ -36,7 +37,8 @@ Portfolio text and project placeholders live in `composeApp/src/commonMain/kotli
 composeApp/src/commonMain/kotlin/   Shared portfolio content and Compose UI
 composeApp/src/wasmJsMain/          Kotlin/Wasm entry point and web shell
 gradle/libs.versions.toml           Centralized Kotlin and Compose versions
-.github/workflows/build.yml         Static build artifact workflow; no deployment
+.github/workflows/build.yml         Build/test and conditional GitHub Pages deployment
+docs/                                Junior-friendly setup, architecture and operations guides
 ```
 
 ## Version references

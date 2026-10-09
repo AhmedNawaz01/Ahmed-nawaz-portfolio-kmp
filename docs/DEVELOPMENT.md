@@ -36,7 +36,7 @@ Gradle prints the local URL after starting the development server. Open it in a 
 
 ## Build and test
 
-Run the configured Wasm tests:
+Run the configured Wasm tests (the default browser runner needs ChromeHeadless):
 
 ```sh
 gradle :composeApp:wasmJsTest
@@ -54,17 +54,17 @@ The generated static files are written to:
 composeApp/build/dist/wasmJs/productionExecutable/
 ```
 
-The CI command runs both tasks in sequence:
+The CI workflow currently runs both tasks in sequence:
 
 ```sh
 gradle :composeApp:wasmJsTest :composeApp:wasmJsBrowserDistribution
 ```
 
-At the time of this documentation, `wasmJsTest` reports `NO-SOURCE`: there are no test files or test dependencies yet. That is a successful Gradle task invocation, not evidence of application behavior being covered by tests.
+Three common-source-set content integrity tests live in `composeApp/src/commonTest/kotlin/PortfolioContentTest.kt`. They check that project cards have unique numbers and displayable copy, experience entries have required labels, and expertise/engineering notes are renderable. The test Kotlin source compiled successfully in this environment, but the browser test task did not complete: Gradle's Karma runner could not find `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`. No test assertions have been reported as passing. Install or point the runner at a compatible Chrome executable (`CHROME_BIN`) before expecting local browser tests to run. Kotlin's official [JavaScript test runner guide](https://kotlinlang.org/docs/js-running-tests.html) documents the browser runner configuration.
 
 ## Verified command and result
 
-The local verification used JDK 17.0.20.1 and a Gradle 9.4.1 distribution unpacked under `/private/tmp` (not installed system-wide):
+The production build verification used JDK 17.0.20.1 and a Gradle 9.4.1 distribution unpacked under `/private/tmp` (not installed system-wide):
 
 ```sh
 env JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home \
@@ -73,7 +73,15 @@ env JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home \
   :composeApp:wasmJsBrowserDistribution :composeApp:wasmJsTest
 ```
 
-Result: `BUILD SUCCESSFUL`; the test task was `NO-SOURCE`. Webpack printed bundle-size recommendations for the JS and Wasm assets. These are performance observations, not compilation failures.
+The independently run production distribution command completed with `BUILD SUCCESSFUL` on 2026-10-09. It emitted Webpack size recommendations for the 513 KiB JS bundle and 2.24 MiB and 8.24 MiB Wasm assets. Those are performance observations, not compilation failures. The actual test command was:
+
+```sh
+env JAVA_HOME=/opt/homebrew/opt/openjdk@17 \
+  GRADLE_USER_HOME=/private/tmp/portfolio-gradle-home \
+  /private/tmp/gradle-9.4.1/bin/gradle :composeApp:wasmJsTest
+```
+
+It failed at `wasmJsBrowserTest`: ChromeHeadless was missing at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, followed by “no tests to execute” because the browser never launched. `compileTestKotlinWasmJs` completed, but no test assertions ran. A compatible Chrome binary and `CHROME_BIN` (if it is outside the default location) are required to finish local test execution.
 
 ## Build troubleshooting
 
