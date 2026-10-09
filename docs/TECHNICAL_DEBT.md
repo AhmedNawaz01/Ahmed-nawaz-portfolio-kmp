@@ -1,0 +1,19 @@
+# Technical debt register
+
+This list records known work that affects correctness, usability, maintenance, or public readiness. Priorities describe order of attention, not promised delivery dates.
+
+| ID | Priority | Item | Why it matters | Evidence / next step |
+| --- | --- | --- | --- | --- |
+| TD-01 | High | Add a Gradle wrapper pinned to 9.4.1 | Contributors currently need to install Gradle separately, and local builds are less reproducible. | `gradlew` and wrapper files are absent. Generate and verify the wrapper with Gradle 9.4.1; commit its scripts, properties, and wrapper JAR. |
+| TD-02 | High | Replace project-domain placeholders with reviewed case studies | The portfolio currently cannot substantiate the project work, role, constraints, or outcomes. | `PortfolioContent.kt` contains generic domain summaries and experience labels. Collect approved facts from Ahmed; do not invent metrics or clients. |
+| TD-03 | High | Add approved contact channels and CV asset | Visitors currently cannot contact Ahmed or download a CV. | Contact content explicitly asks for approved details; no CV is present in web resources. Add only after receiving the actual email, URLs, and PDF. |
+| TD-04 | High | Enable GitHub Pages and verify a live deployment | The repository currently has `has_pages: false`; no live URL has been verified. | An administrator must set Settings → Pages → Source to GitHub Actions. Then deploy from `main` and verify the workflow output URL and HTTP response. |
+| TD-05 | High | Add automated tests for content, navigation, and the architecture lab | `wasmJsTest` currently reports `NO-SOURCE`, so UI behavior has no regression coverage. | Add `commonTest` dependencies and tests for section mapping, content shape, and interactive layer descriptions; consider browser UI tests separately. |
+| TD-06 | Medium | Capture and review actual desktop and mobile screenshots | Visual output has not been reviewed from saved browser images. | Local Safari fetched the HTML, JS, and Wasm assets with HTTP 200. OS capture failed because this session has no capturable display; Safari WebDriver requires “Allow remote automation” in Safari Settings. Capture approved screenshots and add them under `docs/screenshots/`. |
+| TD-07 | Medium | Evaluate Wasm bundle startup and size on target devices | Production output triggered Webpack size recommendations and includes the Skiko runtime. | The verified build emitted a 513 KiB JS bundle and Wasm assets of 2.24 MiB and 8.24 MiB. Measure cold-load and memory use on representative phones before deciding whether to optimize or add a JS fallback. |
+| TD-08 | Medium | Improve semantic structure and keyboard/accessibility review | Compose Canvas web accessibility remains an evolving platform area; visual text alone does not guarantee semantic navigation. | Add heading semantics and accessible descriptions for controls; test keyboard navigation and screen-reader output in supported browsers. |
+| TD-09 | Low | Move remaining contact/CV display strings out of the UI file | Content is mostly separated, but the contact placeholder copy remains in `PortfolioApp.kt`. | Move approved contact labels and asset paths into the content model when real data is added. |
+
+## Updating this register
+
+When an item changes, update its evidence and status in the same pull request. Close an item only after its stated verification has been completed; a planned workflow or placeholder is not completion evidence.
