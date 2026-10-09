@@ -1,6 +1,6 @@
 # Ahmed Nawaz — Engineering Portfolio
 
-> **Current release status:** the portfolio is a Kotlin/Wasm single-page site. Local browser tests and the production build pass. `feature/compose-wasm-portfolio` is pushed; GitHub Pages is configured for Actions. Pull request checks and deployment are still pending. Project cards are domain-level placeholders, not substantiated client case studies.
+> **Current release status:** published on GitHub Pages at [ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp](https://ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp/). PR #1 was merged as `4b0b114`; the main-branch build, tests, artifact upload, and Pages deployment all succeeded on 2026-10-09 ([workflow run 37939856119](https://github.com/AhmedNawaz01/Ahmed-nawaz-portfolio-kmp/actions/runs/37939856119)). Local screenshots are labeled as local captures in the [screenshot index](docs/SCREENSHOTS.md). Project cards are domain-level placeholders, not substantiated client case studies.
 
 ## Contents
 
@@ -63,7 +63,7 @@ Genuine screenshots captured from the local production distribution on 2026-10-0
 
 - Kotlin 2.4.20, Compose Multiplatform 1.12.1, Compose compiler plugin aligned to Kotlin, Material3 artifact 1.12.0-alpha03.
 - Kotlin/Wasm (`wasmJs`) and a static webpack distribution.
-- Gradle Kotlin DSL, version catalog, and Gradle 9.4.1 wrapper.
+- Gradle Kotlin DSL, version catalog, and Gradle 9.4.1 wrapper (Kotlin 2.4.20 fully supports Gradle through 9.7.0; see [compatibility table](https://kotlinlang.org/docs/gradle-configure-project.html#apply-the-plugin)).
 - Shared UI/content in `commonMain`; browser entry point and HTML shell in `wasmJsMain`.
 - Home, project listing, about/experience, expertise, engineering note titles, contact placeholders, responsive desktop rail/mobile bottom navigation, and an interactive conceptual architecture diagram.
 
@@ -158,7 +158,7 @@ Use a short feature branch, make a focused change, run relevant checks, inspect 
 
 ## CI and deployment
 
-`.github/workflows/build.yml` runs tests and the production distribution for `main`, `feature/**`, pull requests, and manual dispatch. The workflow uploads `composeApp/build/dist/wasmJs/productionExecutable`; it deploys only on `main`. Pages is configured for Actions, and the feature branch is pushed; its PR checks and live deployment are pending. See [deployment](docs/DEPLOYMENT.md).
+`.github/workflows/build.yml` runs tests and the production distribution for `main`, `feature/**`, pull requests, and manual dispatch. It uploads `composeApp/build/dist/wasmJs/productionExecutable` and deploys only on `main`. GitHub Pages is configured for Actions; the latest main workflow deployed commit `4b0b114` successfully. See [deployment](docs/DEPLOYMENT.md).
 
 ## Security and privacy
 

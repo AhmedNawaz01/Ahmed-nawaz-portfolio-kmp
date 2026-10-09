@@ -2,7 +2,7 @@
 
 ## Current status
 
-Screenshots below are unmodified captures of the local production distribution, served from `composeApp/build/dist/wasmJs/productionExecutable/` and rendered in Playwright Chromium 156.0.8078.4 on 2026-10-09. Viewports use CSS pixels at device scale factor 1. The app loaded with HTTP 200 for HTML, JS, Wasm, and favicon assets; Playwright recorded no page errors or failed requests during the final capture run.
+Screenshots below are unmodified captures of the local production distribution, served from `composeApp/build/dist/wasmJs/productionExecutable/` and rendered in Playwright Chromium 156.0.8078.4 on 2026-10-09. Viewports use CSS pixels at device scale factor 1. The app loaded with HTTP 200 for HTML, JS, Wasm, and favicon assets; Playwright recorded no page errors or failed requests during the final capture run. The app is now deployed to [GitHub Pages](https://ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp/) (HTTP 200 verified), but the images below remain local-build screenshots; no production-host screenshots are claimed.
 
 | Screenshot | Caption | Viewport/source |
 | --- | --- | --- |
@@ -13,8 +13,9 @@ Screenshots below are unmodified captures of the local production distribution, 
 | ![Technical expertise list on mobile](assets/screenshots/technical-expertise-mobile.png) | Technical expertise, mobile | 390×844, local production build |
 | ![Desktop home with side navigation and project cards](assets/screenshots/home-desktop.png) | Home, desktop | 1440×1000, local production build |
 | ![Desktop project listing and architecture section](assets/screenshots/projects-desktop.png) | Projects, desktop | 1440×1000, local production build |
+| ![Deployed mobile home page](assets/screenshots/home-production-mobile.png) | Home, mobile | 390×844, production GitHub Pages URL, 2026-10-09 |
 
-No detailed case-study screen exists, so there is no case-study screenshot. These images are local-build evidence, not production-host screenshots. `docs/TECHNICAL_DEBT.md` tracks the content gap and unverified production deployment.
+No detailed case-study screen exists, so there is no case-study screenshot. The first seven images are local-build evidence. The final image was captured from the live Pages URL after deployment; Playwright confirmed no page errors or failed requests, and the document width matched the 390 px viewport. `docs/TECHNICAL_DEBT.md` tracks the content gap and Gradle wrapper update.
 
 See the [screenshot index](screenshots/README.md) for the current image inventory. The initial Safari automation attempt was blocked by disabled remote automation and the environment had no capturable desktop display; project-local temporary Playwright/Chromium later enabled genuine headless captures without changing Safari settings or installing software system-wide.
 

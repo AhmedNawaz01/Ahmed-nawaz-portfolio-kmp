@@ -10,7 +10,7 @@ The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifac
 
 ## Repository setup status and release steps
 
-Pages was enabled through the authenticated repository admin session during this execution. `GET /pages` reports the site URL and `build_type: workflow`. The feature branch is pushed and PR #1 is open. Its initial build/test run passed; the latest workflow update needs a fresh run. After the PR checks pass and it is merged, verify:
+Pages was enabled through the authenticated repository admin session. `GET /pages` reports the site URL and `build_type: workflow`. PR #1 merged on 2026-10-09 as `4b0b1141f2af31ee8ec3c5c4e91419d027c93a15`. Main workflow run [37939856119](https://github.com/AhmedNawaz01/Ahmed-nawaz-portfolio-kmp/actions/runs/37939856119) completed successfully: Wasm tests/build and artifact upload passed, then the Pages deploy job passed. The deployed URL returned HTTP 200 and its HTML referenced the generated `portfolio.js` asset. This verifies the deployment and entry page; verify deeper interactions after future changes.
 
 1. Confirm **Settings → Pages → Build and deployment → Source** remains **GitHub Actions**.
 2. Confirm Actions may use the `github-pages` environment and the workflow's deploy-job permissions `pages: write` and `id-token: write`.
@@ -27,7 +27,7 @@ GitHub Pages reports this configured project-site URL:
 https://ahmednawaz01.github.io/Ahmed-nawaz-portfolio-kmp/
 ```
 
-Pages is configured for this URL, but configuration is not deployment evidence. Do not share it as live until the deployment job succeeds and the URL returns the published app.
+The deployment job and public HTTP response verified this URL as live on 2026-10-09. A later `main` push triggers the same build/test/deploy sequence.
 
 ## Rollback
 

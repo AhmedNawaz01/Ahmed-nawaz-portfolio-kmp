@@ -21,15 +21,15 @@ This register distinguishes confirmed gaps from platform trade-offs and unverifi
 - **Dependencies:** Owner approval and source materials.
 - **Verification:** Claims and URLs reviewed; contact links open correctly; PDF appears in production artifact; case-study tests and responsive browser captures added.
 
-### TD-02 — Publish the feature branch and verify deployment
+### TD-02 — Update the supported Gradle wrapper and track deploy health
 
-- **Category / status:** CI/CD and release / pending publication and live verification.
-- **Evidence:** `feature/compose-wasm-portfolio` is published and PR #1 is open. The first hosted build/test run passed; a rerun is pending after the workflow action upgrades. Pages is configured with `build_type: workflow`; no deployment has run and no live URL response is verified yet.
-- **Impact / priority:** High delivery impact; **P1**.
-- **Effort:** 15–45 minutes after valid repository write/admin access.
-- **Remediation:** Push the reviewed feature branch, create a PR, wait for CI, merge through repository policy, then inspect the `main` workflow and published URL.
-- **Dependencies:** GitHub network access and successful CI. `main` currently has no branch protection requirement.
-- **Verification:** Remote branch commit matches reviewed local commit; PR status recorded; main deployment job succeeds; live URL returns the built application.
+- **Category / status:** CI/CD and toolchain maintenance / open, non-blocking.
+- **Evidence:** The deployed Gradle wrapper is 9.4.1. The official Kotlin 2.4.20 compatibility table fully supports Gradle through 9.7.0, while the current official Gradle release reported on 2026-10-09 is 9.8.1. GitHub Actions annotates 9.4.1 as out of date. Main run [37939856119](https://github.com/AhmedNawaz01/Ahmed-nawaz-portfolio-kmp/actions/runs/37939856119) passed build, tests, artifact upload, and Pages deployment; the public URL returned HTTP 200.
+- **Impact / priority:** Low current reliability impact; upgrade should remain within the Kotlin-supported range; **P2**.
+- **Effort:** 1–2 hours including CI validation.
+- **Remediation:** Upgrade wrapper to Gradle 9.7.0 (the newest fully supported by Kotlin 2.4.20), rerun local tests/build and hosted PR checks, and confirm no deprecated API warnings.
+- **Dependencies:** Compatibility verification and successful CI.
+- **Verification:** Wrapper version is 9.7.0; local tasks and PR workflow pass; no obsolete-version annotation remains.
 
 ### TD-03 — Expand automated UI and navigation coverage
 

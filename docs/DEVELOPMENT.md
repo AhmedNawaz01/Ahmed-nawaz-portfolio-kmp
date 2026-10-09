@@ -11,7 +11,7 @@
 
 Gradle 9 requires JDK 17 or newer. The repository includes `gradlew`, `gradlew.bat`, and the wrapper JAR pinned to Gradle 9.4.1. The wrapper downloads its distribution on first run; no system Gradle installation is required. GitHub Actions uses the same wrapper.
 
-Kotlin 2.4.20 supports Gradle versions through 9.7.0. Compose Multiplatform 1.12.1 is paired with Kotlin 2.4.20 here; its Compose compiler plugin is intentionally pinned to that same Kotlin version. Compose Multiplatform 1.12.1 publishes its Material3 artifact at `1.12.0-alpha03`, which is tracked separately in the version catalog.
+Kotlin 2.4.20 fully supports Gradle versions through 9.7.0. The repository uses Gradle 9.4.1, which builds successfully but receives an out-of-date annotation from the current GitHub Actions runner. Upgrade only within Kotlin's documented supported range, then run local tests/build and CI. Compose Multiplatform 1.12.1 is paired with Kotlin 2.4.20 here; its Compose compiler plugin is intentionally pinned to that same Kotlin version. Compose Multiplatform 1.12.1 publishes its Material3 artifact at `1.12.0-alpha03`, which is tracked separately in the version catalog.
 
 ## Check your environment
 
