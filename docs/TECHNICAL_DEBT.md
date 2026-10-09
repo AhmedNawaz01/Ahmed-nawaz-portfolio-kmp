@@ -24,7 +24,7 @@ This register distinguishes confirmed gaps from platform trade-offs and unverifi
 ### TD-02 — Publish the feature branch and verify deployment
 
 - **Category / status:** CI/CD and release / pending publication and live verification.
-- **Evidence:** `feature/compose-wasm-portfolio` is published at `e1ef147`. Authenticated GitHub CLI verifies account `AhmedNawaz01` with Admin repository permission; Pages is configured with `build_type: workflow` and the expected site URL. CI is queued; no deployment has run and no live URL response is verified yet.
+- **Evidence:** `feature/compose-wasm-portfolio` is published and PR #1 is open. The first hosted build/test run passed; a rerun is pending after the workflow action upgrades. Pages is configured with `build_type: workflow`; no deployment has run and no live URL response is verified yet.
 - **Impact / priority:** High delivery impact; **P1**.
 - **Effort:** 15–45 minutes after valid repository write/admin access.
 - **Remediation:** Push the reviewed feature branch, create a PR, wait for CI, merge through repository policy, then inspect the `main` workflow and published URL.

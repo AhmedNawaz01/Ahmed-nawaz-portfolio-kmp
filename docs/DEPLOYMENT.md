@@ -10,7 +10,7 @@ The deployment job uses `actions/configure-pages`, `actions/upload-pages-artifac
 
 ## Repository setup status and release steps
 
-Pages was enabled through the authenticated repository admin session during this execution. `GET /pages` reports the site URL and `build_type: workflow`. The feature branch is pushed and its CI run is queued. After the pull request checks pass and it is merged, verify:
+Pages was enabled through the authenticated repository admin session during this execution. `GET /pages` reports the site URL and `build_type: workflow`. The feature branch is pushed and PR #1 is open. Its initial build/test run passed; the latest workflow update needs a fresh run. After the PR checks pass and it is merged, verify:
 
 1. Confirm **Settings → Pages → Build and deployment → Source** remains **GitHub Actions**.
 2. Confirm Actions may use the `github-pages` environment and the workflow's deploy-job permissions `pages: write` and `id-token: write`.
